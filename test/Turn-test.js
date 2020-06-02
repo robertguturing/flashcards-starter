@@ -28,4 +28,16 @@ describe('Turn', function() {
     const turn = new Turn(5, card);
     expect(turn.evaluateGuess()).to.be.false;
   });
+
+  it('gives feedback incorrect if wrong guess', function(){
+    const card = new Card(1, 'What is 2+2', [4,5], 4);
+    const turn = new Turn(5, card);
+    expect(turn.giveFeedback()).to.equal('incorrect!')
+  });
+
+  it('gives feedback correct if right guess', function(){
+    const card = new Card(1, 'What is 2+2', [4,5], 4);
+    const turn = new Turn(4, card);
+    expect(turn.giveFeedback()).to.equal('correct!')
+  });
 });
