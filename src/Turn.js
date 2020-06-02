@@ -5,7 +5,15 @@ class Turn {
   }
 
   returnGuess() {
-    return this.guess
+    return this.guess;
+  }
+
+  returnCard() {
+    return this.card;
+  }
+
+  evaluateGuess() {
+    return this.card.correctAnswer === this.guess;
   }
 }
 

@@ -6,8 +6,26 @@ const Card = require('../src/Card');
 
 describe('Turn', function() {
   it('should store a guess', function(){
-    const card = new Card(1, 'What is Will\'s favorite animal', ['pug', 'doodle'], 'pug')
+    const card = new Card(1, 'What is Will\'s favorite animal', ['pug', 'doodle'], 'pug');
     const turn = new Turn('pug', card);
-    expect(turn.returnGuess()).to.equal('pug')
+    expect(turn.returnGuess()).to.equal('pug');
+  });
+
+  it('should return the card associated with the guess', function() {
+    const card = new Card(1, 'What is Will\'s favorite animal', ['pug', 'doodle'], 'pug');
+    const turn = new Turn('pug', card);
+    expect(turn.returnCard()).to.equal(card);
+  });
+
+  it('should return true if guess is correct', function(){
+    const card = new Card(1, 'What is Will\'s favorite animal', ['pug', 'doodle'], 'pug');
+    const turn = new Turn('pug', card);
+    expect(turn.evaluateGuess()).to.be.true;
+  });
+
+  it('should return false if guess if incorrect', function(){
+    const card = new Card(1, 'What is 2+2', [4,5], 4);
+    const turn = new Turn(5, card);
+    expect(turn.evaluateGuess()).to.be.false;
   });
 });
