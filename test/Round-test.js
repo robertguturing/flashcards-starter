@@ -10,7 +10,7 @@ describe('Round', function() {
     const card = new Card(1, 'What is the meaning of life?', ['Stuff', 42], 42);
     const deck = new Deck([card]);
     const round = new Round(deck);
-    expect(round.currentCard()).to.equal(card);
+    expect(round.returnCurrentCard()).to.equal(card);
   });
 
   it('returns the number of turns', function() {
@@ -40,7 +40,7 @@ describe('Round', function() {
 
     it('moves the current card after taking a turn', function() {
       this.round.takeTurn('bleh');
-      expect(this.round.currentCard()).to.equal(this.card2);
+      expect(this.round.returnCurrentCard()).to.equal(this.card2);
     });
 
     it('stores incorrect guesses', function() {

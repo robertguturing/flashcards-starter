@@ -7,15 +7,15 @@ class Round {
     this.incorrectGuesses = [];
   }
 
-  currentCard() {
+  returnCurrentCard() {
     return this.deck.cards[this.turns];
   }
 
   takeTurn(guess) {
-    const turn = new Turn(guess, this.currentCard())
+    const turn = new Turn(guess, this.returnCurrentCard())
     const feedback = turn.giveFeedback();
     if(!turn.evaluateGuess()) {
-      this.incorrectGuesses.push(this.currentCard().id)
+      this.incorrectGuesses.push(this.returnCurrentCard().id)
     }
     this.turns += 1;
     return feedback;
@@ -27,6 +27,10 @@ class Round {
 
   corrrectGuesses() {
     return this.turns - this.incorrectGuesses.length
+  }
+
+  endRound() {
+    console.log(`**Round Over** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`)
   }
 }
 
