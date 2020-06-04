@@ -21,37 +21,40 @@ describe('Round', function() {
   });
 
   describe('taking a turn', function() {
+    let card1;
+    let card2;
+    let deck;
+    let round;
     beforeEach(function() {
-      const card1 = new Card(1, 'What is the meaning of life?', ['Stuff', 42], 42);
-      const card2 = new Card(100, '2 +2 is?', [4,5], 4);
-      const deck = new Deck([card1, card2]);
-      this.card2 = card2;
-      this.round = new Round(deck);
+      card1 = new Card(1, 'What is the meaning of life?', ['Stuff', 42], 42);
+      card2 = new Card(100, '2 +2 is?', [4,5], 4);
+      deck = new Deck([card1, card2]);
+      round = new Round(deck);
     });
 
     it('returns feedback based off guess', function(){
-      expect(this.round.takeTurn(42)).to.equal('correct!')
+      expect(round.takeTurn(42)).to.equal('correct!')
     });
 
     it('returns the number of turns', function(){
-      this.round.takeTurn(42);
-      expect(this.round.turns).to.equal(1);
+      round.takeTurn(42);
+      expect(round.turns).to.equal(1);
     });
 
     it('moves the current card after taking a turn', function() {
-      this.round.takeTurn('bleh');
-      expect(this.round.returnCurrentCard()).to.equal(this.card2);
+      round.takeTurn('bleh');
+      expect(round.returnCurrentCard()).to.equal(card2);
     });
 
     it('stores incorrect guesses', function() {
-      this.round.takeTurn('poop');
-      expect(this.round.incorrectGuesses).to.deep.equal([1]);
+      round.takeTurn('poop');
+      expect(round.incorrectGuesses).to.deep.equal([1]);
     });
 
     it('can calculate percent corrrect', function(){
-      this.round.takeTurn('lame wrong answer')
-      this.round.takeTurn(4)
-      expect(this.round.calculatePercentCorrect()).to.equal(50)
+      round.takeTurn('lame wrong answer')
+      round.takeTurn(4)
+      expect(round.calculatePercentCorrect()).to.equal(50)
     });
   });
 });
